@@ -29,12 +29,56 @@
             box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
         }
         
-        img {
+        .dp {
+            margin-left: 30px;
+        }
+        
+        .dp img {
+            border: none;
+            display: block;
+            margin: 0 auto;
             border-radius: 5px 5px 0 0;
         }
         
         .detail {
             padding: 2px 16px;
+        }
+        
+        .collapsible {
+            background-color: #777;
+            color: white;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 15px;
+        }
+        
+        .active,
+        .collapsible:hover {
+            background-color: #555;
+        }
+        
+        .collapsible:after {
+            content: "\002B";
+            color: white;
+            font-weight: bold;
+            float: right;
+            margin-left: 5px;
+        }
+        
+        .active:after {
+            content: "\2212";
+        }
+        
+        .content {
+            padding: 0 18px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.2s ease-out;
+            background-color: #f1f1f1;
         }
     </style>
 </head>
@@ -70,20 +114,32 @@
             <div class="col-sm-4">
                 <!-- <h2><span style='font-size:150px;'>&#128512;</span></h2> -->
                 <h1>;)</h1>
-                <div class="card" style="font-style: italic; text-align: center; ">
-                    <img class="img-responsive" src="./assets/aman.png" style="border: 2px solid indigo;">
+                </br>
+                <div class="card dp" style="font-style: italic; text-align: center;">
+                    <img class="img-responsive" src="./assets/aman.jpg" style="border: 2px solid indigo;">
                     <div class="details">
-                        <p>Fig 1. A portrait of the owner of this page</br>
+                        <p>Fig 1. From left Aman, Wani, Ankur </br>
                     </div>
                 </div>
                 </p>
-                <h3>Brief Bio </h3>
-                <p>Lorem ipsum dolor sit ame.</p>
-                <ul class="nav nav-pills nav-stacked ">
-                    <li class="active "><a href="# ">Work</a></li>
-                    <li><a href="# ">Education</a></li>
-                    <li><a href="# ">Interests</a></li>
-                </ul>
+                <div class="detail">
+                    <h3>Brief Bio </h3>
+                    <p>Lorem ipsum dolor sit ame.</p>
+
+                    <button class="collapsible">Work</button>
+                    <div class="content">
+                        <b>Applied Scientist Intern </b> @ Amazon.com
+                    </div>
+                    <button class="collapsible">Education</button>
+                    <div class="content">
+                        <b>MEng. in CS</b> @ BITS Pilani, Pilani, India
+                        <b>B.Tech in CS </b>@ JK Institue of Applied Physics and Technology, UoA, Prayagraj
+                    </div>
+                    <button class="collapsible">Work</button>
+                    <div class="content">
+                        <b>Applied Scientist Intern </b> @ Amazon.com
+                    </div>
+                </div>
                 <hr class="hidden-sm hidden-md hidden-lg ">
             </div>
             <div class="col-sm-8 ">
@@ -109,7 +165,22 @@
     <div class="jumbotron text-center " style="margin-bottom:0 ">
         <p>Footer</p>
     </div>
+    <script>
+        var coll = document.getElementsByClassName("collapsible");
+        var i;
 
+        for (i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var content = this.nextElementSibling;
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                } else {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                }
+            });
+        }
+    </script>
 </body>
 
 </html>
